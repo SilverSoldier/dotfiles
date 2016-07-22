@@ -1,0 +1,12 @@
+[user]
+	name = Kavya
+	email = gkavya10@gmail.com
+[http]
+	sslVerify = false
+[https]
+	sslVerify = false
+[core]
+	editor = vim
+[alias]
+	s = status
+	b = branch
