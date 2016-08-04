@@ -60,7 +60,10 @@ Plugin 'antoyo/vim-licenses'
 """racket highlighting
 Plugin 'wlangstroth/vim-racket'
 
-"""snippet plugin - experiment
+"""plugin for hdl
+Plugin 'suoto/vim-hdl'
+
+""snippet plugin - experiment
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 
