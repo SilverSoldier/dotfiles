@@ -1,5 +1,7 @@
 alias c="clear"
 alias x="exit"
+alias move="mv -i"
+alias ll="ls -la"
 
 # general settings
 if [ -f ~/.shell_options ]; then
