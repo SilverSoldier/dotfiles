@@ -15,7 +15,7 @@ do
 done &
 
 # Set wallpaper
-feh --bg-scale -F ~/.xwallpaper-dwm.png
+feh --bg-scale -F ~/.tattvamasi.jpg
 
 #Set WM name ( for Java apps)
 wmname LG3D

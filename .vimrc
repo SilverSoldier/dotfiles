@@ -27,6 +27,7 @@ nore : ;
 
 "dark background color
 set background=light
+colorscheme zellner
 
 "shift >>/<< width
 set shiftwidth=2
@@ -61,7 +62,7 @@ Plugin 'antoyo/vim-licenses'
 Plugin 'wlangstroth/vim-racket'
 
 """plugin for hdl
-Plugin 'suoto/vim-hdl'
+"""Plugin 'suoto/vim-hdl'
 
 ""snippet plugin - experiment
 Bundle 'Shougo/neosnippet'
@@ -86,3 +87,26 @@ let g:licenses_copyright_holders_name = 'Govindarajan, Chander <chandergovind@gm
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+""" set terminal mode
+set term=rxvt-unicode
+""" this way, by using tmux (with xterm keys on) also works
+
+""" for urxvt
+map [5^ <C-PageUp>
+map [6^ <C-PageDown>
+
+""" Tabs management
+
+"""switching between tabs
+noremap <C-PageUp> gT
+noremap <C-PageDown> gt
+
+""" new tab creation
+map tn <Esc>;tabnew<CR>
+
+""" A better escape
+"inoremap <silent> <Up> <ESC><Up>
+"inoremap <silent> <Down> <ESC><Down>
+inoremap <silent> <Left> <ESC><Left>
+"inoremap <silent> <Right> <ESC><Right>
