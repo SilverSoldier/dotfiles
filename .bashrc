@@ -59,8 +59,12 @@ fi
 if [ "$color_prompt" = yes ]; then
 	# Original prompt with name in green, path in blue
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
 	# Display only name of current working directory instead of path and colors
-    PS1='${debian_chroot:+($debian_chroot)}\[[\033[01;32m\]\u@\h\[\033[00m\]]:\[\033[01;34m\]\W\[\033[00m\]\> '
+    #PS1='${debian_chroot:+($debian_chroot)}\[[\033[01;32m\]\u@\h\[\033[00m\]]:\[\033[01;34m\]\W\[\033[00m\]\> '
+
+	# Display only current directory without name
+    PS1='${debian_chroot:+($debian_chroot)}$\[\033[01;34m\]\W\[\033[00m\]:'
 else
     # Displays only name of current working directory instead of path
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '

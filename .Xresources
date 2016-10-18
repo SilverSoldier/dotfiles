@@ -1,7 +1,5 @@
 #include "./.Hybrid.xrdb"
 
-URxvt*transparent: true
-URxvt*shading: 30
 URxvt.scrollBar: false
 URxvt.font: xft:monospace:size=18:antialias-false
 URxvt.letterSpace: -1
