@@ -1,3 +1,4 @@
+"syntax highlighting
 syntax on 
 
 "line numbering that toggles between normal and relative
@@ -14,6 +15,11 @@ set ai
 set incsearch
 set hlsearch
 
+set showcmd
+
+"remove highlighting till next search
+nnoremap <silent> <esc> :noh<return><esc>
+
 "show matching brackets
 set showmatch
 
@@ -25,15 +31,14 @@ set wildmenu
 nore ; :
 nore : ;
 
-"dark background color
-set background=light
-colorscheme zellner
-
 "shift >>/<< width
 set shiftwidth=2
 
 set tabstop=4
 set softtabstop=4
+
+" For nerdCommenter
+filetype plugin on
 
 "Use Enter/Shift-Enter to introduce new lines above/below w/o leaving normal mode
 map <Enter> o<ESC>
@@ -49,7 +54,7 @@ call vundle#begin()
 """manage vundle
 Plugin 'gmarik/Vundle.vim'
 
-"""CtrlP plugin
+"""CtrlP plugin - it's super awesome
 Plugin 'kien/ctrlp.vim'
 
 """scala highlighting
@@ -61,15 +66,21 @@ Plugin 'antoyo/vim-licenses'
 """racket highlighting
 Plugin 'wlangstroth/vim-racket'
 
-"""plugin for hdl
-"""Plugin 'suoto/vim-hdl'
-
 ""snippet plugin - experiment
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
+""Plugin 'Shougo/neosnippet'
+""Plugin 'Shougo/neosnippet-snippets'
 
-"""org-mode 
-Bundle 'jceb/vim-orgmode'
+"""org-mode - yet to use
+Plugin 'jceb/vim-orgmode'
+
+""" syntax checking - uncomfortable
+"""Plugin 'scrooloose/syntastic'
+
+""" quick scope to find best position to jump to
+Plugin 'unblevable/quick-scope'
+
+""" Helpful for commenting
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()
 filetype plugin indent on
@@ -110,3 +121,7 @@ map tn <Esc>;tabnew<CR>
 "inoremap <silent> <Down> <ESC><Down>
 inoremap <silent> <Left> <ESC><Left>
 "inoremap <silent> <Right> <ESC><Right>
+
+map ;sc <Esc>;lclose<CR>
+
+colorscheme zellner
