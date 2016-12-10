@@ -1,5 +1,6 @@
-#include "./.Hybrid.xrdb"
+! xterm*faceName: Liberation Mono:size=15:antialias=false
 
+URxvt*transparent: 
 URxvt.scrollBar: false
 URxvt.font: xft:monospace:size=18:antialias-false
 URxvt.letterSpace: -1
@@ -8,26 +9,32 @@ URxvt*foreground: white
 URxvt.perl-ext:
 URxvt.perl-ext-common:
 URxvt.saveLines: 8192
-URxvt*color0:       Ansi_0_Color
-URxvt*color1:       Ansi_1_Color
-URxvt*color2:       Ansi_2_Color
-URxvt*color3:       Ansi_3_Color
-URxvt*color4:       Ansi_4_Color
-URxvt*color5:       Ansi_5_Color
-URxvt*color6:       Ansi_6_Color
-URxvt*color7:       Ansi_7_Color
-URxvt*color8:       Ansi_8_Color
-URxvt*color9:       Ansi_9_Color
-URxvt*color10:      Ansi_10_Color
-URxvt*color11:      Ansi_11_Color
-URxvt*color12:      Ansi_12_Color
-URxvt*color13:      Ansi_13_Color
-URxvt*color14:      Ansi_14_Color
-URxvt*color15:      Ansi_15_Color
-URxvt*colorBD:      Bold_Color
-URxvt*colorIT:      Italic_Color
-URxvt*colorUL:      Underline_Color
-URxvt*foreground:   Foreground_Color
-URxvt*background:   Background_Color
-URxvt*cursorColor:  Cursor_Color
+
+! tangoesque scheme
+*background: #111111
+*foreground: #babdb6
+! Black (not tango) + DarkGrey
+*color0:  #000000
+*color8:  #555753
+! DarkRed + Red
+*color1:  #ff6565
+*color9:  #ff8d8d
+! DarkGreen + Green
+*color2:  #93d44f
+*color10: #c8e7a8
+! DarkYellow + Yellow
+*color3:  #eab93d
+*color11: #ffc123
+! DarkBlue + Blue
+*color4:  #204a87
+*color12: #3465a4
+! DarkMagenta + Magenta
+*color5:  #ce5c00
+*color13: #f57900
+!DarkCyan + Cyan (both not tango)
+*color6:  #89b6e2
+*color14: #46a4ff
+! LightGrey + White
+*color7:  #cccccc
+*color15: #ffffff
 
