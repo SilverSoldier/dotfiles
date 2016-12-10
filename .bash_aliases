@@ -4,7 +4,7 @@ alias move="mv -iv"
 alias copy="cp -iv"
 alias ll="ls -la"
 alias del="rm -rIv"
-alias tmux="tmux -2"
+#alias tmux="tmux -2"
 alias ac="apt-cache"
 alias agi="apt-get install"
 
