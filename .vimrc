@@ -124,4 +124,33 @@ inoremap <silent> <Left> <ESC><Left>
 
 map ;sc <Esc>;lclose<CR>
 
-colorscheme zellner
+colorscheme pablo
+
+""" Thanks to nvie/vimrc
+
+""" to paste without mass auto indendation
+set pastetoggle=<F2>
+
+""" fold using syntax
+set foldmethod=syntax
+set foldclose=all "automatically reclose after navigating out
+set foldlevel=1
+
+""" show status bar at all times
+set laststatus=2
+
+""" underline current line
+set cursorline
+noremap <silent> <F3> :set nocursorline!<CR>
+
+""" keep para indentation when wrapping text
+set breakindent
+
+""" Complete filenames/lines with quicker shortcut
+inoremap <C-f> <C-x><C-f>
+inoremap <C-l> <C-x><C-l>
+
+" Quick yanking to the end of the line
+nnoremap Y y$
+
+""" End Thanks to nvie/vimrc
