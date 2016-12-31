@@ -37,7 +37,6 @@ set shiftwidth=2
 set tabstop=4
 set softtabstop=4
 
-" For nerdCommenter
 filetype plugin on
 
 "Use Enter/Shift-Enter to introduce new lines above/below w/o leaving normal mode
@@ -55,7 +54,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 """CtrlP plugin - it's super awesome
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 """scala highlighting
 Plugin 'derekwyatt/vim-scala'
@@ -63,6 +62,7 @@ Plugin 'derekwyatt/vim-scala'
 """License adder
 Plugin 'antoyo/vim-licenses'
 
+"b
 """racket highlighting
 Plugin 'wlangstroth/vim-racket'
 
@@ -75,12 +75,41 @@ Plugin 'jceb/vim-orgmode'
 
 """ syntax checking - uncomfortable
 """Plugin 'scrooloose/syntastic'
-
 """ quick scope to find best position to jump to
 Plugin 'unblevable/quick-scope'
 
 """ Helpful for commenting
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
+
+""" Indentation for Lisp
+Plugin 'paredit.vim'
+
+""" To look up documentation
+Plugin 'keith/investigate.vim'
+
+"""list of tags
+Plugin 'majutsushi/tagbar'
+
+"""slime for vim
+Plugin 'jpalardy/vim-slime'
+
+"""zeavim - access zeal docs from vim
+Plugin 'kabbamine/zeavim.vim'
+
+""" code snippets for C and python
+Plugin 'drmingdrmer/xptemplate'
+
+""" syntax highlighting for rust
+Plugin 'rust-lang/rust.vim'
+
+""" Neocomplete - general purpose auto complete frontend
+Plugin 'Shougo/neocomplete.vim'
+
+""" Snippets
+" engine
+Plugin 'SirVer/ultisnips'
+" snippets
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 filetype plugin indent on
@@ -120,11 +149,9 @@ map tn <Esc>;tabnew<CR>
 "inoremap <silent> <Up> <ESC><Up>
 "inoremap <silent> <Down> <ESC><Down>
 inoremap <silent> <Left> <ESC><Left>
-"inoremap <silent> <Right> <ESC><Right>
+inoremap <silent> <Right> <ESC><Right>
 
-map ;sc <Esc>;lclose<CR>
-
-colorscheme pablo
+colorscheme peachpuff
 
 """ Thanks to nvie/vimrc
 
@@ -137,11 +164,15 @@ set foldclose=all "automatically reclose after navigating out
 set foldlevel=1
 
 """ show status bar at all times
-set laststatus=2
+"set laststatus=2
 
 """ underline current line
 set cursorline
+""" highlight current cursor column
+set cursorcolumn
+hi CursorColumn ctermbg=6
 noremap <silent> <F3> :set nocursorline!<CR>
+noremap <silent> <F4> :set nocursorcolumn!<CR>
 
 """ keep para indentation when wrapping text
 set breakindent
@@ -154,3 +185,34 @@ inoremap <C-l> <C-x><C-l>
 nnoremap Y y$
 
 """ End Thanks to nvie/vimrc
+
+""" shortcut to write in vim when you forget to start using vim as sudo
+cmap w!! w !sudo tee > /dev/null %
+
+""" QuickScope plugin
+""" toggle with 
+nmap <F5> <plug>(QuickScopeToggle)
+vmap <F5> <plug>(QuickScopeToggle)
+""" highlight when pressing f or F
+"let g:qs_highlight_on_keys = ['f', 'F']
+
+""" tagbar plugin
+""" easy toggle
+nmap <F8> ;TagbarToggle<CR>
+
+""" slime configuration
+let g:slime_target = "tmux"
+noremap <silent> X :SlimeSendCurrentLine<CR>
+
+""" Neocomplete settings
+set completeopt=longest,menu,menuone
+let g:neocomplete#enable_at_startup=1
+" have selection on first option
+let g:neocomplete#enable_auto_select = 1
+
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+
+let g:neosnippet#snippets_directory='~/.vim/bundle/xptemplate/autoload/xpt'
