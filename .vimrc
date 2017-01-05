@@ -5,6 +5,9 @@ syntax on
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
+" show partial commands
+au BufNewFile,BufReadPost,FilterReadPost,FileReadPost * set showcmd
+
 "original line number
 set number
 
@@ -14,8 +17,6 @@ set ai
 "search incrementally and highlighting
 set incsearch
 set hlsearch
-
-set showcmd
 
 "remove highlighting till next search
 nnoremap <silent> <esc> :noh<return><esc>
@@ -145,11 +146,14 @@ noremap <C-PageDown> gt
 """ new tab creation
 map tn <Esc>;tabnew<CR>
 
-""" A better escape
+""" Better escapes
 "inoremap <silent> <Up> <ESC><Up>
 "inoremap <silent> <Down> <ESC><Down>
-inoremap <silent> <Left> <ESC><Left>
+"since esc moves back one step
+inoremap <silent> <Left> <ESC><Right>
 inoremap <silent> <Right> <ESC><Right>
+""" Escape when typing so fingers don't leave home row
+inoremap <silent> fj <ESC>
 
 colorscheme peachpuff
 
@@ -198,7 +202,7 @@ vmap <F5> <plug>(QuickScopeToggle)
 
 """ tagbar plugin
 """ easy toggle
-nmap <F8> ;TagbarToggle<CR>
+nmap <silent> <F8> ;TagbarToggle<CR>
 
 """ slime configuration
 let g:slime_target = "tmux"
