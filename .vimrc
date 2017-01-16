@@ -6,6 +6,7 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 " show partial commands
+" somehow did not work normally
 au BufNewFile,BufReadPost,FilterReadPost,FileReadPost * set showcmd
 
 "original line number
@@ -111,6 +112,12 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'SirVer/ultisnips'
 " snippets
 Plugin 'honza/vim-snippets'
+
+" Auto formatting
+Plugin 'chiel92/vim-autoformat'
+
+" C/C++ completion engine based on clang
+Plugin 'Rip-Rip/clang_complete'
 
 call vundle#end()
 filetype plugin indent on
@@ -220,3 +227,13 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 let g:neosnippet#snippets_directory='~/.vim/bundle/xptemplate/autoload/xpt'
+
+""" Auto formatting
+" format on save
+au BufWrite *.py :Autoformat
+au BufWrite *.c :Autoformat
+au BufWrite *.cpp :Autoformat
+
+""" clang_complete
+" Require: clang (apt-get), exact path needs to be put here
+let g:clang_library_path='/usr/bin/clang'
