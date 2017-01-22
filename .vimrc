@@ -119,6 +119,9 @@ Plugin 'chiel92/vim-autoformat'
 " C/C++ completion engine based on clang
 Plugin 'Rip-Rip/clang_complete'
 
+" completion of paranthesis, quotes
+Plugin 'jiangmiao/auto-pairs'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -128,8 +131,8 @@ filetype plugin indent on
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 
 """For the License Adder
-let g:licenses_authors_name = 'Govindarajan, Chander <chandergovind@gmail.com>'
-let g:licenses_copyright_holders_name = 'Govindarajan, Chander <chandergovind@gmail.com>'
+let g:licenses_authors_name = 'Govindarajan, Kavya <soldatargent@gmail.com>'
+let g:licenses_copyright_holders_name = 'Govindarajan, Kavya <soldatargent@gmail.com>'
 
 """ for neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -236,4 +239,13 @@ au BufWrite *.cpp :Autoformat
 
 """ clang_complete
 " Require: clang (apt-get), exact path needs to be put here
-let g:clang_library_path='/usr/bin/clang'
+let g:clang_library_path='/usr/lib/llvm-3.5/lib/libclang-3.5.so.1'
+
+""" make space as leader
+let mapleader = "\<Space>"
+
+""" save using <space>w
+nnoremap <Leader>w :w<CR>
+
+""" remember undo afer quitting
+set hidden
