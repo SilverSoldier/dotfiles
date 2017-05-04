@@ -1,7 +1,3 @@
-if filereadable(".vim.custom")
-    so .vim.custom
-endif
-
 "syntax highlighting
 syntax on 
 
@@ -47,89 +43,84 @@ filetype plugin on
 
 "Use Enter/Shift-Enter to introduce new lines above/below w/o leaving normal mode
 map <Enter> o<ESC>
-map <S-Enter> O<ESC>
 
 """setup vundle
 set nocompatible
 filetype off 
 
-set rtp^=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-"""manage vundle
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/bundle')
 
 """CtrlP plugin - it's super awesome
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 """scala highlighting
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 
 """License adder
-Plugin 'antoyo/vim-licenses'
+Plug 'antoyo/vim-licenses'
 
 """racket highlighting
-Plugin 'wlangstroth/vim-racket'
+Plug 'wlangstroth/vim-racket'
 
 ""snippet plugin - experiment
-""Plugin 'Shougo/neosnippet'
-""Plugin 'Shougo/neosnippet-snippets'
+""Plug 'Shougo/neosnippet'
+""Plug 'Shougo/neosnippet-snippets'
 
 """org-mode - yet to use
-Plugin 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 
 """ syntax checking - uncomfortable
-"""Plugin 'scrooloose/syntastic'
+"""Plug 'scrooloose/syntastic'
+
 """ quick scope to find best position to jump to
-Plugin 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope'
 
 """ Helpful for commenting
-Plugin 'tpope/vim-commentary'
-
-""" Indentation for Lisp
-Plugin 'paredit.vim'
+Plug 'tpope/vim-commentary'
 
 """ To look up documentation
-Plugin 'keith/investigate.vim'
+Plug 'keith/investigate.vim'
 
 """list of tags
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 """slime for vim
-Plugin 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'
 
 """zeavim - access zeal docs from vim
-Plugin 'kabbamine/zeavim.vim'
+Plug 'kabbamine/zeavim.vim'
 
 """ code snippets for C and python
-Plugin 'drmingdrmer/xptemplate'
+Plug 'drmingdrmer/xptemplate'
 
 """ syntax highlighting for rust
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 """ Neocomplete - general purpose auto complete frontend
-Plugin 'Shougo/neocomplete.vim'
+Plug 'Shougo/neocomplete.vim'
 
 """ Java autocomplete
-Plugin 'artur-shaik/vim-javacomplete2'
+Plug 'artur-shaik/vim-javacomplete2'
 
 """ Snippets
 " engine
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " snippets
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Auto formatting
-Plugin 'chiel92/vim-autoformat'
+Plug 'chiel92/vim-autoformat'
 
 " C/C++ completion engine based on clang
-Plugin 'Rip-Rip/clang_complete'
+Plug 'Rip-Rip/clang_complete'
 
 " completion of paranthesis, quotes
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
-call vundle#end()
-filetype plugin indent on
+" for using local vimrc
+Plug 'embear/vim-localvimrc'
+
+call plug#end()
 
 "Ctrlp fuzzy finder : thanks to Robin Ward
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
