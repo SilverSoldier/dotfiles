@@ -1,3 +1,7 @@
+if filereadable(".vim.custom")
+    so .vim.custom
+endif
+
 "syntax highlighting
 syntax on 
 
@@ -64,7 +68,6 @@ Plugin 'derekwyatt/vim-scala'
 """License adder
 Plugin 'antoyo/vim-licenses'
 
-"b
 """racket highlighting
 Plugin 'wlangstroth/vim-racket'
 
@@ -75,9 +78,8 @@ Plugin 'wlangstroth/vim-racket'
 """org-mode - yet to use
 Plugin 'jceb/vim-orgmode'
 
-""" syntax checking
-Plugin 'scrooloose/syntastic'
-
+""" syntax checking - uncomfortable
+"""Plugin 'scrooloose/syntastic'
 """ quick scope to find best position to jump to
 Plugin 'unblevable/quick-scope'
 
@@ -108,21 +110,23 @@ Plugin 'rust-lang/rust.vim'
 """ Neocomplete - general purpose auto complete frontend
 Plugin 'Shougo/neocomplete.vim'
 
+""" Java autocomplete
+Plugin 'artur-shaik/vim-javacomplete2'
+
 """ Snippets
 " engine
 Plugin 'SirVer/ultisnips'
 " snippets
 Plugin 'honza/vim-snippets'
 
-" Slows down too much and clogs the undo history
 " Auto formatting
-"Plugin 'chiel92/vim-autoformat'
+Plugin 'chiel92/vim-autoformat'
+
+" C/C++ completion engine based on clang
+Plugin 'Rip-Rip/clang_complete'
 
 " completion of paranthesis, quotes
-"Plugin 'jiangmiao/auto-pairs'
-
-" auto complete paranthesis, quotes
-Plugin 'raimondi/delimitmate'
+Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
 filetype plugin indent on
@@ -152,8 +156,8 @@ map [6^ <C-PageDown>
 """ Tabs management
 
 """switching between tabs
-noremap <C-f> gT
-noremap <C-j> gt
+noremap <C-PageUp> gT
+noremap <C-PageDown> gt
 
 """ new tab creation
 map tn <Esc>;tabnew<CR>
@@ -235,9 +239,9 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/xptemplate/autoload/xpt'
 
 """ Auto formatting
 " format on save
-" au BufWrite *.py :Autoformat
-" au BufWrite *.c :Autoformat
-" au BufWrite *.cpp :Autoformat
+au BufWrite *.py :Autoformat
+au BufWrite *.c :Autoformat
+au BufWrite *.cpp :Autoformat
 
 """ clang_complete
 " Require: clang (apt-get), exact path needs to be put here
@@ -251,26 +255,5 @@ nnoremap <Leader>w :w<CR>
 
 """ remember undo afer quitting
 set hidden
- 
-""" delimitmate config
-let g:delimitMate_expand_space = 1
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_jump_expansion = 1
 
-""" Quick Fix Window options
-
-"""direct move to next
-nmap cn ;cn<CR>
-
-" In the quickfix window, <CR> is used to jump to the error under the
-" cursor, so undefine the mapping there.
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-" required to counter the effect of our mapping of <CR> in clist window
-
-""" Syntastic configuration
-let g:syntastic_always_populate_loc_list = 1
-
-"" c/cpp checkers
-" Require: gcc , cppcheck (apt-get), splint(apt-get), clang(apt-get)
-let g:syntastic_c_checkers = ['gcc','clang_check','clang_tidy']
-let g:syntastic_cpp_checkers = ['gcc','clang_check','clang_tidy']
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
