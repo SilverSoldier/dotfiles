@@ -1,0 +1,44 @@
+Config { 
+        -- appearance
+        font = "xft:Fixed-10"
+        , bgColor = "black"
+        , fgColor = "#646464"
+        , border = BottomB
+        , borderColor = "#CEFFAC"
+        , position = Top
+
+        , commands =
+        [ Run Date "%a %b %_d %l:%M" "date" 10
+        -- battery monitor
+        , Run Battery
+                [ "--template" , "Batt: <acstatus>"
+                , "--Low"      , "10"        -- units: %
+                , "--High"     , "80"        -- units: %
+                , "--low"      , "darkred"
+                , "--normal"   , "darkorange"
+                , "--high"     , "darkgreen"
+
+                , "--" -- battery specific options
+                -- discharging status
+                , "-o" , "<left>% (<timeleft>)"
+                -- AC "on" status
+                , "-O" , "<fc=#dAA520>Charging</fc>"
+                -- charged status
+                , "-i" , "<fc=#006000>Charged</fc>"
+                ] 50
+        , Run StdinReader
+        ]
+
+        -- layout
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %BAT0%"
+
+        -- general behavior
+        , lowerOnStart =     True    -- send to bottom of window stack on start
+        , hideOnStart =      False   -- start with window unmapped (hidden)
+        , allDesktops =      True    -- show on all desktops
+        , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+        , pickBroadest =     False   -- choose widest display (multi-monitor)
+        , persistent = True -- enable/disable hiding (True = disabled)
+}
