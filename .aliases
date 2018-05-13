@@ -5,18 +5,41 @@ alias copy="cp -iRv"
 alias ll="ls -la"
 alias del="rm -rIv --preserve-root"
 alias ac="apt-cache"
-
-# easy editor commands
-alias vimrc="$EDITOR ~/.vimrc"
-alias zshrc="$EDITOR ~/.zshrc"
-alias bashrc="$EDITOR ~/.bashrc"
+alias e="vi"
 
 # for easy movement
 alias ..="cd .."
 alias ...="cd ../.."
 
-# mount storage
-alias mstor="sudo mount /dev/sda6 /media/Storage"
+# mount hard disk 
+alias mhd="sudo mount /dev/sdb1 /media/Seagate -o dmask=000,fmask=111"
+
+# mount usb
+alias musb="sudo mount /dev/sdb1 /media/usb -o dmask=000,fmask=111"
+
+# unmount whatever is in /dev/sdb1
+alias umnt="sudo umount /dev/sdb1"
+
+# intelliJ
+alias idea="~/software/idea-IC-172.3968.16/bin/idea.sh"
+
+# android studio
+alias studio='~/software/android-studio/bin/studio.sh'
+
+# display message
+alias msg='xmessage -default okay -font -bitstream-terminal-bold-r-normal--18-140-100-100-c-110-iso8859-1 -center'
+
+# running pandoc in container
+function pandoc() {
+	# NOTE: need to run as pandoc abc.md abc.pdf
+	echo "Executing pandoc"
+	docker run -it -v `pwd`:/source jagregory/pandoc "$1" -o "$2"
+}
+
+export -f pandoc
+
+# getting stats of commands
+alias stats='history | awk '\''{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a; }'\'' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n10'
 
 # general settings
 if [ -f ~/.shell_options ]; then

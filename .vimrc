@@ -26,7 +26,7 @@ nnoremap <silent> <esc> :noh<return><esc>
 set showmatch
 
 "tab completion
-set wildmode=longest:full
+set wildmode=longest,full,list
 set wildmenu
 
 "set semi-colon to colon
@@ -73,7 +73,7 @@ Plug 'jceb/vim-orgmode'
 """Plug 'scrooloose/syntastic'
 
 """ quick scope to find best position to jump to
-Plug 'unblevable/quick-scope'
+Plug 'bradford-smith94/quick-scope'
 
 """ Helpful for commenting
 Plug 'tpope/vim-commentary'
@@ -102,6 +102,9 @@ Plug 'Shougo/neocomplete.vim'
 """ Java autocomplete
 Plug 'artur-shaik/vim-javacomplete2'
 
+""" Java auto import
+Plug 'rustushki/JavaImp.vim'
+
 """ Snippets
 " engine
 Plug 'SirVer/ultisnips'
@@ -111,14 +114,34 @@ Plug 'honza/vim-snippets'
 " Auto formatting
 Plug 'chiel92/vim-autoformat'
 
-" C/C++ completion engine based on clang
-Plug 'Rip-Rip/clang_complete'
-
 " completion of paranthesis, quotes
 Plug 'jiangmiao/auto-pairs'
 
 " for using local vimrc
 Plug 'embear/vim-localvimrc'
+
+" syntax for flex and bison
+Plug 'justinmk/vim-syntax-extra'
+
+""" Python autocomplete engine
+" Requires jedi(pip)
+Plug 'davidhalter/jedi-vim'
+
+""" Latex
+Plug 'vim-latex/vim-latex'
+
+""" Erlang Runtime
+Plug 'vim-erlang/vim-erlang-runtime'
+
+""" Elixir support
+Plug 'elixir-editors/vim-elixir'
+
+""" Markdown support
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+""" 
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -179,11 +202,6 @@ set foldlevel=1
 
 """ underline current line
 set cursorline
-""" highlight current cursor column
-set cursorcolumn
-hi CursorColumn ctermbg=6
-noremap <silent> <F3> :set nocursorline!<CR>
-noremap <silent> <F4> :set nocursorcolumn!<CR>
 
 """ keep para indentation when wrapping text
 set breakindent
@@ -204,8 +222,6 @@ cmap w!! w !sudo tee > /dev/null %
 """ toggle with 
 nmap <F5> <plug>(QuickScopeToggle)
 vmap <F5> <plug>(QuickScopeToggle)
-""" highlight when pressing f or F
-"let g:qs_highlight_on_keys = ['f', 'F']
 
 """ tagbar plugin
 """ easy toggle
@@ -233,6 +249,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/xptemplate/autoload/xpt'
 au BufWrite *.py :Autoformat
 au BufWrite *.c :Autoformat
 au BufWrite *.cpp :Autoformat
+au BufWrite *.java :Autoformat
 
 """ clang_complete
 " Require: clang (apt-get), exact path needs to be put here
@@ -248,3 +265,16 @@ nnoremap <Leader>w :w<CR>
 set hidden
 
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:JavaComplete_ShowExternalCommandsOutput = 1
+
+""" jedi-vim
+let g:jedi#show_call_signatures = "1"
+let g:jedi#popup_select_first = 0
+
+" for erlang usage
+autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
+au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
+
+""" ctags configuration
+" searches upwards for tags file
+set tags=./tags;

@@ -2,13 +2,13 @@ Config {
         -- appearance
         font = "xft:Fixed-10"
         , bgColor = "black"
-        , fgColor = "#646464"
-        , border = BottomB
-        , borderColor = "#CEFFAC"
+        , fgColor = "#ababab"
+        , border = FullB
+        , borderColor = "#ababab"
         , position = Top
 
         , commands =
-        [ Run Date "%a %b %_d %l:%M" "date" 10
+        [ Run Date "<fc=#4DC425>%a %b %_d %l:%M</fc>" "date" 10
         -- battery monitor
         , Run Battery
                 [ "--template" , "Batt: <acstatus>"
@@ -16,15 +16,15 @@ Config {
                 , "--High"     , "80"        -- units: %
                 , "--low"      , "darkred"
                 , "--normal"   , "darkorange"
-                , "--high"     , "darkgreen"
+                , "--high"     , "green"
 
                 , "--" -- battery specific options
-                -- discharging status
-                , "-o" , "<left>% (<timeleft>)"
-                -- AC "on" status
-                , "-O" , "<fc=#dAA520>Charging</fc>"
-                -- charged status
-                , "-i" , "<fc=#006000>Charged</fc>"
+						-- discharging status
+						, "-o" , "<left>% (<timeleft>)"
+						-- AC "on" status
+						, "-O" , "<fc=#dAA520>Charging</fc>"
+						-- charged status
+						, "-i" , "<fc=#006000>Charged</fc>"
                 ] 50
         , Run StdinReader
         ]
@@ -32,7 +32,7 @@ Config {
         -- layout
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %BAT0%"
+        , template = "%StdinReader% }{ %date% || %battery%"
 
         -- general behavior
         , lowerOnStart =     True    -- send to bottom of window stack on start
