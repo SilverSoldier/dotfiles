@@ -104,7 +104,7 @@
 (defun cquery-mode-hook ()
  (lsp-cquery-enable))
 
-(add-hook 'c++-mode-hook 'cquery-mode-hook)
+;; (add-hook 'c++-mode-hook 'cquery-mode-hook)
 (add-hook 'c-mode-hook 'cquery-mode-hook)
 
 ;;; java related
@@ -131,7 +131,6 @@
   (local-set-key (kbd "M-*") 'pop-tag-mark)
   ;; (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
   ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
-  (setq gofmt-command "goimports")
   )
 
 (add-hook 'go-mode-hook #'my-go-mode-hook)
@@ -140,8 +139,44 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+;;; OCaml related
+(load "/home/kavya/.opam/default/share/emacs/site-lisp/tuareg-site-file")
+
+(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist))
+(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
+(setq utop-command "opam config exec -- utop -emacs")
+(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+(add-hook 'tuareg-mode-hook 'utop-minor-mode)
+(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+(setq merlin-use-auto-complete-mode t)
+(setq merlin-error-after-save nil)
+
 ;;; pdf related
 (pdf-tools-install)
+;; use zathura for dvi and pdf viewer
+(setq TeX-view-program-selection
+      '((output-dvi "Zathura")
+        (output-pdf "Zathura")))
+(setq TeX-view-program-list
+      '(("Zathura" "zathura %o")))
+
+;;; Latex related
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+;;; Package installation related
+;; (quelpa 'auctex)
+;; (quelpa 'company-auctex)
+;; (quelpa 'pdf-tools)
+;; (quelpa 'yasnippet)
+;; (quelpa 'projectile)
+
