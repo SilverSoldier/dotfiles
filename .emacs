@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -34,7 +33,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; UI
-(load-theme 'misterioso)
+;; (load-theme 'deeper-blue 'tramp 'wombat)
+;; (load-theme 'whiteboard 'dichromacy 'adwaita)  
 ; disable bars
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -52,13 +52,7 @@
 (global-hl-line-mode 1)
 
 ; set font and size
-(set-default-font "Monospace 16")
-
-; since emacsclient does not load theme and fonts etc.
-(defun startup_func(_)
-  (load-file "/home/kavya/.emacs"))
-
-(add-hook 'after-make-frame-functions #'startup_func)
+(set-default-font "Monospace 14")
 
 ;;; general programming related
 (auto-complete-mode 1)
@@ -74,70 +68,6 @@
 
 (define-key evil-normal-state-map (kbd "]c") 'git-gutter+-next-hunk)
 (define-key evil-normal-state-map (kbd "[c") 'git-gutter+-previous-hunk)
-
-
-;;; lisp related
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-;adding slime folder
-(add-to-list 'load-path "/home/kavya/software/slime-2.20")
-(require 'slime)
-
-;;; lsp related
-(require 'lsp-mode)
-(require 'lsp-ui)
-;; (quelpa 'lsp-mode 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'lsp-mode-hook 'company-mode)
-(add-hook 'lsp-mode-hook 'flycheck-mode)
-(add-hook 'lsp-mode-hook 'lsp-ui-sideline-mode)
-(require 'company-lsp)
-;; (quelpa 'company-lsp)
-(push 'company-lsp company-backends)
-;(setq company-transformers nil company-lsp-async t company-lsp-cache-candidates 'auto company-lsp-enable-snippet t)
-;;; cquery related 
-(require 'cquery)
-(setq cquery-executable "~/tools/cquery/build/release/bin/cquery")
-(setq cquery-sem-highlight-method 'font-lock)
-(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
-(cquery-use-default-rainbow-sem-highlight)
-
-(defun cquery-mode-hook ()
- (lsp-cquery-enable))
-
-;; (add-hook 'c++-mode-hook 'cquery-mode-hook)
-(add-hook 'c-mode-hook 'cquery-mode-hook)
-
-;;; java related
-(require 'lsp-java)
-(add-hook 'java-mode-hook  'lsp-java-enable)
-(add-hook 'java-mode-hook  (lambda () (lsp-ui-flycheck-enable t)))
-(setq lsp-java--workspace-folders (list "/home/kavya/projects/llice/src/main"))
-
-;;; haskell related
-(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-(add-hook 'java-mode-hook  (lambda () (lsp-ui-flycheck-enable t)))
-(customize-set-value 'lsp-haskell-process-path-hie "/home/kavya/.local/bin/hie")
-
-;;; go related
-(projectile-mode)
-(defun my-switch-project-hook ()
-  (go-set-project))
-(add-hook 'projectile-after-switch-project-hook #'my-switch-project-hook)
-
-(defun my-go-mode-hook ()
-  (add-hook 'before-save-hook 'gofmt-before-save); gofmt before every save
-					; Go-def jump keybinding
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "M-*") 'pop-tag-mark)
-  ;; (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
-  )
-
-(add-hook 'go-mode-hook #'my-go-mode-hook)
-
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
 
 ;;; OCaml related
 (load "/home/kavya/.opam/default/share/emacs/site-lisp/tuareg-site-file")
@@ -155,6 +85,7 @@
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (setq merlin-use-auto-complete-mode t)
 (setq merlin-error-after-save nil)
+
 
 ;;; pdf related
 (pdf-tools-install)
@@ -174,9 +105,3 @@
 (load custom-file)
 
 ;;; Package installation related
-;; (quelpa 'auctex)
-;; (quelpa 'company-auctex)
-;; (quelpa 'pdf-tools)
-;; (quelpa 'yasnippet)
-;; (quelpa 'projectile)
-
